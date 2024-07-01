@@ -28,9 +28,9 @@ class DummyObject(BaseModel):
     optional_field: str | None = None
 
 
-class DummyPayload(DummyObject):
+class DummyData2(DummyObject):
     """
-    Definition for dummy request body payload.
+    Definition for dummy response data (example 2).
     Also contains example for model inheritance.
     """
 
@@ -43,4 +43,21 @@ class DummyResponse2(APISuccessResponse):
     """
 
     message: str = sc.OPERATION_SUCCESS
-    data: DummyPayload
+    data: DummyData2
+
+
+class DummyData3(BaseModel):
+    """
+    Definition for dummy response data (example 3).
+    """
+
+    item_id: str
+
+
+class DummyResponse3(APISuccessResponse):
+    """
+    Definition for dummy API response.
+    """
+
+    message: str = sc.OPERATION_SUCCESS
+    data: DummyData3

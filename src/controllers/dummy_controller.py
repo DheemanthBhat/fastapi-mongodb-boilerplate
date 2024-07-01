@@ -5,6 +5,8 @@ Module containing business login related to User management.
 import random
 import logging
 from fastapi import status, HTTPException
+from src.managers import dummy_manager
+from src.exceptions.app_exceptions import ValidationError
 from src.helpers import utils, dt_utils
 from src.constants import str_constants as sc
 
@@ -55,6 +57,32 @@ def do_operation_2(_):
     data = {
         **dummy_obj,  # Spread above `dummy_obj` here.
         "complex_field": [get_dummy_obj() for _ in range(0, upper_limit)],
+    }
+
+    return utils.success_response(message=sc.OPERATION_SUCCESS, data=data)
+
+
+async def do_operation_3(item, can_fail, db_ssn):
+    """
+    Function to perform dummy operation-3 and return output as API response.
+    """
+    logger.info("Performing DB insertion operation within a transaction.")
+
+    logger.info("Adding random cost to item.")
+    new_item = {
+        "name": item.name,
+        "cost": random.uniform(1, 1000),
+    }
+
+    item_id = await dummy_manager.create_item_in_db(db_ssn, new_item)
+    logger.info("Insert operation performed successfully.")
+
+    if can_fail or False:
+        logger.info("Forcefully raise an exception to test transaction rollback.")
+        raise ValidationError("Forcefully failing since `can_fail` is passed as `True`.")
+
+    data = {
+        "item_id": item_id,
     }
 
     return utils.success_response(message=sc.OPERATION_SUCCESS, data=data)

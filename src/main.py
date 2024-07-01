@@ -3,6 +3,7 @@ Entry point for application server.
 """
 
 import logging
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request, status
 from fastapi.exceptions import RequestValidationError, ResponseValidationError, HTTPException
 from fastapi.responses import PlainTextResponse, JSONResponse
@@ -11,6 +12,7 @@ from src.helpers import utils, log_config
 from src.constants import api_docs as ad, app_constants as ac, str_constants as sc
 from src.configs.app_config import app_config as ag
 from src.exceptions.app_exceptions import ValidationError
+from src.db import MongoDBManager
 from src.routes import app_router
 
 
@@ -18,11 +20,24 @@ from src.routes import app_router
 log_config.setup_loggers(log_level=ag.LOG_LEVEL)
 logger = logging.getLogger(__name__)
 
+
+@asynccontextmanager
+async def lifespan(_: FastAPI):
+    """
+    Function to perform tasks that are executed
+    only once in the lifespan of the application.
+    """
+    manager = MongoDBManager()
+    yield
+    manager.close_connection()
+
+
 # Initialize FastAPi application.
 app = FastAPI(
     title=ac.APPLICATION_NAME,
     summary=ad.APP_SUMMARY,
     description=ad.APP_DESC,
+    lifespan=lifespan,
     swagger_ui_parameters={
         # In Swagger docs, collapse the `Schemas` section by default.
         "defaultModelsExpandDepth": 0,
@@ -45,8 +60,7 @@ async def fnf_exception_handler(req: Request, exc: HTTPException):
     Exception handler:
     Custom exception handler for '404 Not Found'.
     """
-    req_path = req.url.path
-    logger.error("Status:%s - %s - %s", exc.status_code, req_path, exc.detail)
+    logger.error("Status:%s - %s - %s", exc.status_code, req.url.path, exc.detail)
     res = utils.failure_response(message=sc.RESOURCE_NOT_FOUND)
     return JSONResponse(status_code=status.HTTP_404_NOT_FOUND, content=res)
 
