@@ -62,7 +62,7 @@ def timestamp_to_datetime(timestamp):
     ts_in_sec = get_timestamp_in_sec(timestamp)
 
     # Convert timestamp to Python datetime object.
-    return datetime.fromtimestamp(ts_in_sec, tz=timezone(ac.TIMEZONE))
+    return datetime.fromtimestamp(ts_in_sec, tz=timezone(ag.TIMEZONE))
 
 
 def adjust_days(dt=None, days=0):
