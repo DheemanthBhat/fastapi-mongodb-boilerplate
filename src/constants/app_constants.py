@@ -5,6 +5,7 @@ Module containing static constants used for application configuration.
 # Common constants.
 DEFAULT_LOG_LEVEL = "INFO"
 APPLICATION_NAME = "FastAPI+MongoDB Boilerplate"
+DATABASE_NAME = "dummy_db"
 
 # Time related constants.
 DEFAULT_TIMEZONE = "Asia/Kolkata"

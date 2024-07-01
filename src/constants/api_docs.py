@@ -34,3 +34,9 @@ API_DUMMY_2 = """
 
 API to perform dummy operation-2 to test payload validation.
 """
+
+API_DUMMY_3 = """
+### Description
+
+API to perform dummy operation-3 to test DB transactions.
+"""

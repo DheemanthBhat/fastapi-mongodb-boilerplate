@@ -4,7 +4,9 @@
 
 `fastapi-mongodb-boilerplate` is a boilerplate code containing REST APIs developed using FastAPI and MongoDB as database.
 
-## 2 Technologies
+## 2 Technical Specifications
+
+### 2.1 Technologies
 
 Below are the list of technologies used in this project:
 
@@ -12,6 +14,14 @@ Below are the list of technologies used in this project:
 1. [FastAPI][2] - Python Web framework.
 1. [MongoDB][3] - NoSQL Database.
 1. [Docker][4] - Containerizing the application.
+
+### 2.2 Libraries
+
+Libraries used in this project:
+
+1. [PyMongo][6] - Native Python driver for MongoDB.
+1. [Motor][7] - Asynchronous Python driver for MongoDB built on top of PyMongo.
+1. [Prisma][8] - ORM (or ODM) for Python and MongoDB.
 
 ## 3 Setup
 
@@ -89,3 +99,6 @@ Launch Redoc docs in browser: <http://127.0.0.1:8000/redoc>
 [3]: https://www.mongodb.com/
 [4]: https://www.docker.com/
 [5]: https://www.docker.com/products/docker-desktop/
+[6]: https://pymongo.readthedocs.io/en/stable/
+[7]: https://motor.readthedocs.io/en/stable/
+[8]: https://www.prisma.io/docs/orm/overview/databases/mongodb
