@@ -14,7 +14,7 @@ class AppConfig(BaseSettings):
     """
 
     # Set application timezone.
-    TIMEZONE: str = ac.TIMEZONE
+    TIMEZONE: str = ac.DEFAULT_TIMEZONE
 
     # Application logging level.
     LOG_LEVEL: str = ac.DEFAULT_LOG_LEVEL
