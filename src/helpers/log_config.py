@@ -1,5 +1,5 @@
 """
-Module to configure logging.
+Module to configure loggers for custom logging formats.
 """
 
 from logging.config import dictConfig
@@ -7,7 +7,8 @@ from logging.config import dictConfig
 
 def setup_loggers(log_level):
     """
-    Function to setup loggers using custom logging configuration.
+    Function to setup loggers for various log-levels
+    and formats using custom logging configuration.
     """
     # Default format.
     dft_fmt = "%(levelprefix)s %(message)s"

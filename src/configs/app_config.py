@@ -19,14 +19,14 @@ class AppConfig(BaseSettings):
     # Application logging level.
     LOG_LEVEL: str = ac.DEFAULT_LOG_LEVEL
 
-    # CORS parameters.
+    # CORS: Whitelist origins.
     ALLOW_ORIGIN: list = ["*"]
 
     # MongoDB connection string.
     MONGO_CONNECTION_STRING: str
 
-    # Load environment variables from `.env` file.
-    model_config = SettingsConfigDict(env_file="../../.env", env_file_encoding="utf-8")
+    # Load required environment variables from the full list in `.env` file and ignore others.
+    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
 
 
 app_config = AppConfig()

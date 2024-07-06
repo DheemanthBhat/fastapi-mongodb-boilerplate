@@ -34,7 +34,7 @@ class APIFailureResponse(BaseModel):
     message: str = sc.INTERNAL_SERVER_ERROR
 
 
-class FiledError(BaseModel):
+class FieldError(BaseModel):
     """
     Definition for Field level errors.
     """
@@ -50,4 +50,4 @@ class ValidationErrorResponse(APIFailureResponse):
     """
 
     message: str = sc.INVALID_REQUEST
-    errors: list[FiledError] | None = None
+    errors: list[FieldError] | None = None

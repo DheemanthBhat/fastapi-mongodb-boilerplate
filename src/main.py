@@ -8,12 +8,12 @@ from fastapi import FastAPI, Request, status
 from fastapi.exceptions import RequestValidationError, ResponseValidationError, HTTPException
 from fastapi.responses import PlainTextResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-from src.helpers import utils, log_config
 from src.constants import api_docs as ad, app_constants as ac, str_constants as sc
 from src.configs.app_config import app_config as ag
-from src.exceptions.app_exceptions import ValidationError
+from src.helpers import utils, log_config
 from src.db import MongoDBManager
 from src.routes import app_router
+from src.exceptions.app_exceptions import ValidationError
 
 
 # Setup application logging at required log level.
@@ -102,7 +102,7 @@ async def req_error_handler(_: Request, exc: RequestValidationError):
 
 
 @app.exception_handler(ResponseValidationError)
-async def response_error_handler(_: Request, exc: ResponseValidationError):
+async def res_error_handler(_: Request, exc: ResponseValidationError):
     """
     Exception handler:
     Receives all the errors captured while validating the response body.
@@ -138,7 +138,7 @@ async def general_exception_handler(_: Request, exc: Exception):
 @app.get("/", response_class=PlainTextResponse, tags=["Default"])
 async def server_health():
     """
-    Function to check server health by responding with "Success" message.
+    API to check server health by responding with "Success" message.
     """
     return sc.SUCCESS_MESSAGE
 

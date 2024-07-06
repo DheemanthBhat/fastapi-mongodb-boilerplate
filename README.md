@@ -10,10 +10,10 @@
 
 Below are the list of technologies used in this project:
 
-1. [Python][1] - Programming language. Version >= 3.11.
-1. [FastAPI][2] - Python Web framework.
-1. [MongoDB][3] - NoSQL Database.
-1. [Docker][4] - Containerizing the application.
+1. [Python][1] - Programming language (version >= 3.11).
+1. [FastAPI][2] - Python Web framework used in Backend API development.
+1. [MongoDB][3] - NoSQL Database for storing data.
+1. [Docker][4] - Containerizing the services.
 
 ### 2.2 Libraries
 
